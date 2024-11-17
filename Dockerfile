@@ -1,8 +1,8 @@
 # Use an OpenJDK 17 image
 FROM openjdk:17-jdk-slim
 
-# Set the JAVA_HOME environment variable
-ENV JAVA_HOME=/usr/local/openjdk-17
+# Set the JAVA_HOME environment variable as per Render's environment
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 # Add JAVA_HOME to PATH
 ENV PATH="$JAVA_HOME/bin:${PATH}"
