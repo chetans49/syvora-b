@@ -1,16 +1,19 @@
 # Use a base image that supports Java 21
 FROM openjdk:21-jdk-slim
 
-# Set the working directory in the container
+# Set the JAVA_HOME environment variable
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+
+# Add JAVA_HOME to the PATH environment variable
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
+# Set the working directory
 WORKDIR /app
 
-# Copy all files from your local machine to the container's working directory
+# Copy your project files into the Docker container
 COPY . .
 
-# Expose the port that your Spring Boot application will run on (typically 8080)
-EXPOSE 8080
-
-# Build the project using Maven (replace with appropriate command if you use Gradle or other tools)
+# Build the project (if needed)
 RUN ./mvnw clean install
 
 # Run the Spring Boot application
