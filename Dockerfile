@@ -1,16 +1,19 @@
-# Use a base image that supports Java 21
+# Use an OpenJDK 17 image
 FROM openjdk:17-jdk-slim
 
-# Set the working directory inside the container
+# Set the JAVA_HOME environment variable
+ENV JAVA_HOME=/usr/local/openjdk-17
+
+# Add JAVA_HOME to PATH
+ENV PATH="$JAVA_HOME/bin:${PATH}"
+
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the project files to the container
-COPY . .
+# Copy the Maven wrapper and pom.xml to the container
+COPY . /app
 
-# Ensure that the mvnw script is executable
-RUN chmod +x mvnw
-
-# Build the project using Maven (skip tests)
+# Run Maven build to install dependencies (skip tests for faster builds)
 RUN ./mvnw clean install -DskipTests
 
 # Expose the port your application will run on
