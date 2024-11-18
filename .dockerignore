@@ -1,0 +1,27 @@
+# Ignore the node_modules directory (for Node.js projects)
+node_modules/
+
+# Ignore the target directory (for Java/Maven projects)
+target/
+
+# Ignore Git-related files and directories
+.git/
+.gitignore
+demo-0.0.1-SNAPSHOT.jar 
+
+# Ignore environment files (useful for sensitive information)
+.env
+
+# Ignore build cache and log files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignore IDE or editor-specific files
+.vscode/
+.idea/
+
+# Ignore system files (Mac/Windows)
+.DS_Store
+Thumbs.db

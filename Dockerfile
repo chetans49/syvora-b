@@ -1,23 +1,19 @@
-# Use an OpenJDK 17 image
+# Use OpenJDK 21 as the base image
 FROM openjdk:17-jdk-slim
 
-# Set the JAVA_HOME environment variable as per Render's environment
+# Define the location of the JAR file
+ARG JAR_FILE=/target/demo-0.0.1-SNAPSHOT.jar
+
+ENV PATH=/usr/local/openjdk-17/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
-# Add JAVA_HOME to PATH
-ENV PATH="$JAVA_HOME/bin:${PATH}"
+# Copy the built JAR file into the container
+COPY ${JAR_FILE} app.jar
 
-# Set the working directory in the container
-WORKDIR /app
+# Run the application
+ENTRYPOINT ["java", "-jar", "/app.jar"]
 
-# Copy the Maven wrapper and pom.xml to the container
-COPY . /app
 
-# Run Maven build to install dependencies (skip tests for faster builds)
-RUN ./mvnw clean install -DskipTests
-
-# Expose the port your application will run on
-EXPOSE 8081
-
-# Run the Spring Boot application
-CMD ["./mvnw", "spring-boot:run"]
+CMD ["./mvnw" "spring-boot:run"]
