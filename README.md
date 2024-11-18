@@ -18,7 +18,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/chetans49/syvora.git
+git clone https://github.com/chetans49/syvora-b.git
 cd syvora/backend
 Build the project:
 
@@ -30,7 +30,7 @@ Run the application:
 bash
 Copy code
 ./mvnw spring-boot:run
-Access the application on http://localhost:8080.
+Access the application on http://localhost:8081.
 
 #Known Issues
 Deployment Issue: Current deployment platforms like Render and Heroku only support JDK 17, while my local system uses JDK 21. I am working on resolving this issue using Docker for containerization.
